@@ -1,7 +1,7 @@
-import scrapping
+import scraping
 
 def main():
-    scrapping
+    scraping
 
 if __name__ == "__main__":
     main()
