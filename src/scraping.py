@@ -21,10 +21,12 @@ def reading_file():
             pass
     return set()
 
+
 def add_subjects(existing_links):
     for subject in subjects:
-        link = subject["href"]
-        existing_links.add(link)
+        href = subject.get("href")
+        if href:
+            existing_links.add(href)
     return existing_links
 
 
