@@ -1,9 +1,10 @@
-import scraping
-import bot_telegram
+from scraping import run_scraping
+from bot_telegram import send_message
 
 def main():
-    scraping
-    bot_telegram
+    new_links = run_scraping()
+    for link in new_links:
+        send_message(link)
 
 if __name__ == "__main__":
     main()
