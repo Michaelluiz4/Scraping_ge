@@ -1,7 +1,7 @@
 import requests
 import os
 from dotenv import load_dotenv
-from scraping import reading_file
+from scraping import run_scraping
 
 load_dotenv()
 
@@ -13,7 +13,12 @@ links_sent = set()
 def send_message(message):
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
     data = {"chat_id": CHAT_ID, "text": message}
-    requests.post(url, data=data)
+
+    try:
+        response = requests.post(url, data=data)
+        response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        print(f"Error" + e)
 
 
 def read_links_txt():
@@ -21,8 +26,6 @@ def read_links_txt():
         with open("sent.txt", "r", encoding="utf-8") as file:
             for line in file:
                 links_sent.add(line.strip())
-        return True
-    return False
 
 
 def add_link_txt(link):
@@ -33,9 +36,20 @@ def add_link_txt(link):
     return False
 
 
-read_links_txt()
-links = reading_file()
+"""read_links_txt()
+links = run_scraping()
 
 for link in links:
     if add_link_txt(link):
-        send_message(link)
+        send_message(link)"""
+
+def main():
+    read_links_txt()
+    links = run_scraping()
+
+    for link in links:
+        if add_link_txt(link):
+            send_message(link)
+
+if __name__ == "__main__":
+    main()
