@@ -5,3 +5,5 @@ venv
 links.json
 .env
 sent.txt
+__pycache__
+*.pyc
