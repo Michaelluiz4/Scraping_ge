@@ -36,20 +36,9 @@ def add_link_txt(link):
     return False
 
 
-"""read_links_txt()
+read_links_txt()
 links = run_scraping()
 
 for link in links:
     if add_link_txt(link):
-        send_message(link)"""
-
-def main():
-    read_links_txt()
-    links = run_scraping()
-
-    for link in links:
-        if add_link_txt(link):
-            send_message(link)
-
-if __name__ == "__main__":
-    main()
+        send_message(link)
