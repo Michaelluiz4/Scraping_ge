@@ -13,7 +13,6 @@ def run_scraping():
 
     subjects = soup.find_all("a", class_="feed-post-link")
 
-
     def reading_file():
         # function read file links.json (if it exists)
         if os.path.exists(FILE_PATH):
