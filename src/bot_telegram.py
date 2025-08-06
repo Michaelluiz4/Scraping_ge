@@ -9,6 +9,7 @@ TOKEN = os.getenv("TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
 
 links_sent = set()
+FILE_PATH = "sent.txt"
 
 def send_message(message):
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
@@ -22,15 +23,15 @@ def send_message(message):
 
 
 def read_links_txt():
-    if os.path.exists("sent.txt"):
-        with open("sent.txt", "r", encoding="utf-8") as file:
+    if os.path.exists(FILE_PATH):
+        with open(FILE_PATH, "r", encoding="utf-8") as file:
             for line in file:
                 links_sent.add(line.strip())
 
 
 def add_link_txt(link):
     if link not in links_sent:
-        with open("sent.txt", "a", encoding="utf-8") as file:
+        with open(FILE_PATH, "a", encoding="utf-8") as file:
             file.write(link + "\n")
         return True
     return False
