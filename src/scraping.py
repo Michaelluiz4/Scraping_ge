@@ -3,6 +3,8 @@ import requests
 from bs4 import BeautifulSoup
 import json
 
+FILE_PATH = "links.json"
+
 def run_scraping():
     url = "https://ge.globo.com/futebol/times/palmeiras/"
     response = requests.get(url)
@@ -12,9 +14,9 @@ def run_scraping():
 
 
     def reading_file():
-        if os.path.exists("links.json"):
+        if os.path.exists(FILE_PATH):
             try:
-                with open("links.json", "r", encoding="utf-8") as file:
+                with open(FILE_PATH, "r", encoding="utf-8") as file:
                     data = json.load(file)
                     return set(data)
             except json.JSONDecodeError:
@@ -33,7 +35,7 @@ def run_scraping():
 
 
     def write_in_file(final_links):
-        with open("links.json", "w", encoding="utf-8") as file:
+        with open(FILE_PATH, "w", encoding="utf-8") as file:
             json.dump(list(final_links), file, ensure_ascii=False, indent=4)
 
 
