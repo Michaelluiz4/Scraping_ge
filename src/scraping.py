@@ -6,6 +6,7 @@ import json
 FILE_PATH = "links.json"
 
 def run_scraping():
+    # function to run scraping
     url = "https://ge.globo.com/futebol/times/palmeiras/"
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
@@ -14,6 +15,7 @@ def run_scraping():
 
 
     def reading_file():
+        # function read file links.json (if it exists)
         if os.path.exists(FILE_PATH):
             try:
                 with open(FILE_PATH, "r", encoding="utf-8") as file:
@@ -25,6 +27,7 @@ def run_scraping():
 
 
     def extract_new_links(existing_links):
+        # function to extract new link
         new_links = set()
 
         for subject in subjects:
@@ -35,6 +38,7 @@ def run_scraping():
 
 
     def write_in_file(final_links):
+        # function write in file links.json
         with open(FILE_PATH, "w", encoding="utf-8") as file:
             json.dump(list(final_links), file, ensure_ascii=False, indent=4)
 
