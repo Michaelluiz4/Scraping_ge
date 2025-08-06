@@ -12,6 +12,7 @@ links_sent = set()
 FILE_PATH = "sent.txt"
 
 def send_message(message):
+    # function sent message for telegram
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
     data = {"chat_id": CHAT_ID, "text": message}
 
@@ -23,6 +24,7 @@ def send_message(message):
 
 
 def read_links_txt():
+    # function read links in file sent.txt
     if os.path.exists(FILE_PATH):
         with open(FILE_PATH, "r", encoding="utf-8") as file:
             for line in file:
@@ -30,6 +32,7 @@ def read_links_txt():
 
 
 def add_link_txt(link):
+    # function add link in file sent.txt
     if link not in links_sent:
         with open(FILE_PATH, "a", encoding="utf-8") as file:
             file.write(link + "\n")
